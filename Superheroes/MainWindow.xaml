@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Superheroes"
         mc:Ignorable="d"
-        Title="Superheroes" Height="500" Width="800"
+        Title="Superheroes" Height="700" Width="1000"
         Icon="img/shield.ico">
     <Window.Resources>
         <Style TargetType="TextBlock">
@@ -22,16 +22,18 @@
         <local:Converter x:Key="converter"></local:Converter>
         <local:VConverter x:Key="converter2"></local:VConverter>
     </Window.Resources>
-    <DockPanel x:Name="comicDockPanel" LastChildFill="True" Background="{Binding Path=Heroe, Converter={StaticResource converter}}">
+    <DockPanel x:Name="comicDockPanel" LastChildFill="True" Background="{Binding Path=SuperheroeActual.Heroe, Converter={StaticResource converter}}">
         <DockPanel DockPanel.Dock="Top" Height="70" LastChildFill="False">
-            <TextBlock DockPanel.Dock="Left" Text="{Binding Path=Nombre}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock DockPanel.Dock="Left" Text="{Binding Path=SuperheroeActual.Nombre}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <WrapPanel DockPanel.Dock="Right">
-                <Image Grid.Column="0" Height="100" Width="50" Source="img/avengers.png" Visibility="{Binding Path=Vengador, Converter={StaticResource converter2}}"></Image>
-                <Image Grid.Column="1" Height="100" Width="70" Source="img/xmen.png" Visibility="{Binding Path=Xmen, Converter={StaticResource converter2}}"></Image>
+                <Image Grid.Column="0" Height="100" Width="50" Source="img/avengers.png" Visibility="{Binding Path=SuperheroeActual.Vengador, Converter={StaticResource converter2}}"></Image>
+                <Image Grid.Column="1" Height="100" Width="70" Source="img/xmen.png" Visibility="{Binding Path=SuperheroeActual.Xmen, Converter={StaticResource converter2}}"></Image>
             </WrapPanel>
         </DockPanel>
         <Grid DockPanel.Dock="Bottom" Width="200" Height="42" Margin="10">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -42,8 +44,10 @@
             <Button Background="Transparent" BorderThickness="0" Grid.Column="0" Click="BackButton_Click">
                 <Image Source="img/arrow.png"></Image>
             </Button>
-            <TextBlock x:Name="textoTextBlock" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">1</TextBlock>
-            <Button Background="Transparent" BorderThickness="0"  Grid.Column="2" Click="NextButton_Click">
+            <TextBlock x:Name="textoTextBlock" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=Actual}"></TextBlock>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">/</TextBlock>
+            <TextBlock x:Name="textoTextBlock2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=Total}"></TextBlock>
+            <Button Background="Transparent" BorderThickness="0"  Grid.Column="4" Click="NextButton_Click">
             <Image Source="img/arrow.png">
                 <Image.LayoutTransform>
                     <TransformGroup>
@@ -56,6 +60,6 @@
             </Image>
             </Button>
         </Grid>
-        <Image Stretch="Fill" Source="{Binding Path=Imagen}" Margin="5"></Image>
+        <Image Stretch="Fill" Source="{Binding Path=SuperheroeActual.Imagen}" Margin="5"></Image>
     </DockPanel>
 </Window>

@@ -20,35 +20,24 @@ namespace Superheroes
     /// </summary>
     public partial class MainWindow : Window
     {
-        int i = 0;
+
+        MainWindowVM vm = new MainWindowVM();
+        
         public MainWindow()
         {
             InitializeComponent();
-
-            
-
-            comicDockPanel.DataContext = Superheroe.GetSamples()[i];
+            DataContext = vm;
 
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            if (i < Superheroe.GetSamples().Count-1)
-            {
-                i++;
-                comicDockPanel.DataContext = Superheroe.GetSamples()[i];
-            }
-            textoTextBlock.Text = (i + 1).ToString();
+            vm.Avanzar();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (i > 0)
-            {
-                i--;
-                comicDockPanel.DataContext = Superheroe.GetSamples()[i];
-            }
-            textoTextBlock.Text = (i + 1).ToString();
+            vm.Retroceder();
         }
     }
 }
